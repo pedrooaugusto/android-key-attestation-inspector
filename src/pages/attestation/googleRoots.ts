@@ -1,7 +1,7 @@
 import { X509Certificate } from "@peculiar/x509";
 import { sha256, splitPemChain } from "./parser";
 
-export const GOOGLE_ROOTS_PEM_PATH = "/google-root-certs.pem";
+export const GOOGLE_ROOTS_PEM_PATH = "google-root-certs.pem";
 
 export async function buildRootSpkiSetFromPem(pemBundle: string): Promise<Set<string>> {
   const parts = splitPemChain(pemBundle);
