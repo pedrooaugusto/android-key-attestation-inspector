@@ -1,0 +1,365 @@
+/*
+  Standalone, highly readable light theme for the Attestation page
+  – larger type, generous spacing, high contrast, scoped styles.
+*/
+
+:root {
+  --bg: #f7f9fc;
+  --surface: #ffffff;
+  --text: #0f172a;        /* slate-900 */
+  --muted: #475569;       /* slate-600 */
+  --line: #e5e7eb;        /* gray-200 */
+  --accent: #0ea5e9;      /* sky-500 */
+  --accent-ink: #075985;  /* sky-800 */
+  --ok: #15803d;          /* green-700 */
+  --bad: #be123c;         /* rose-700 */
+  /* Chain colors (up to 6) */
+  --chain-0: #0284c7;     /* sky-600 */
+  --chain-1: #059669;     /* emerald-600 */
+  --chain-2: #d97706;     /* amber-600 */
+  --chain-3: #7c3aed;     /* violet-600 */
+  --chain-4: #0891b2;     /* cyan-600 */
+  --chain-5: #db2777;     /* rose-600 */
+  --shadow: 0 6px 28px rgba(15, 23, 42, 0.06);
+  --radius: 14px;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+:root {
+  --background: #0a0a0a;
+  --logo-color: #f06543;
+}
+
+body {
+  background-color: var(--background);
+}
+
+section {
+    & h2 {
+        color: var(--title, #f06543);
+        font-family: Oxygen;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+
+        & span {
+            margin-right: 5px;
+        }
+    }
+}
+
+header {
+  h1 {
+        color: var(--text-3, #f06543);
+        font-family: "Protest Strike";
+        font-size: 42px;
+        font-style: normal;
+        font-weight: 400;
+        text-align: center;
+    }
+    p {
+      text-align: center;
+    }
+}
+
+.page.attestation-page {
+  box-sizing: border-box;
+  min-height: 100vh;
+  padding: 28px 20px 40px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16.5px;
+  line-height: 1.65;
+  letter-spacing: 0.01em;
+  overflow-x: hidden; /* prevent page-level horizontal scroll */
+}
+
+/* Top-right GitHub link */
+.attestation-page .github-link {
+  position: fixed;
+  top: 12px;
+  right: 16px;
+  background: var(--surface);
+  color: var(--accent-ink);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-weight: 600;
+  box-shadow: var(--shadow);
+  text-decoration: none;
+}
+.attestation-page .github-link:hover {
+  text-decoration: underline;
+}
+
+.attestation-page header {
+  margin: 0 auto 22px;
+  max-width: 960px;
+}
+.attestation-page header h1 {
+  margin: 0 0 6px;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.attestation-page header p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.attestation-page .uploader,
+.attestation-page .summary,
+.attestation-page .cert-list,
+.attestation-page .raw {
+  max-width: 960px;
+  margin-inline: auto;
+}
+
+.attestation-page .uploader {
+  margin-top: 20px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  padding: 18px 16px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  display: block;
+}
+.attestation-page .uploader .row { display: flex; gap: 10px; align-items: center; }
+.attestation-page .uploader .row.file {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+.attestation-page .uploader .or {
+  margin: 10px 0; text-align: center; color: var(--muted); font-size: 13px; font-weight: bold;
+}
+.attestation-page .uploader .url-loader input[type="url"] {
+  flex: 1; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; background: #fff;
+}
+.attestation-page .uploader .url-loader button {
+  padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--accent); color: #fff; font-weight: 600;
+}
+.attestation-page .uploader input[type="file"] {
+  font-size: 14px;
+}
+/* Modern browsers */
+.attestation-page .uploader input[type="file"]::file-selector-button {
+  padding: 10px 12px;
+  margin-right: 12px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+/* Safari/WebKit fallback */
+.attestation-page .uploader input[type="file"]::-webkit-file-upload-button {
+  padding: 10px 12px;
+  margin-right: 12px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+.attestation-page .uploader input[type="file"]::file-selector-button:hover,
+.attestation-page .uploader input[type="file"]::-webkit-file-upload-button:hover {
+  filter: brightness(0.95);
+}
+.attestation-page .uploader input[type="file"]:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 10px;
+}
+.attestation-page .uploader .hint { margin-top: 8px; color: var(--muted); font-size: 12px; }
+.attestation-page .error {
+  margin-top: 12px;
+  color: var(--bad);
+  font-weight: 600;
+}
+
+.attestation-page .summary {
+  margin: 18px auto 8px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+.attestation-page .summary .summary-item {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  padding: 14px 16px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  gap: 10px;
+
+  & span:first-child {
+    display: block;
+  }
+}
+.attestation-page .summary .summary-item span {
+  color: var(--muted);
+}
+.attestation-page .summary .ok { color: var(--ok); }
+.attestation-page .summary .bad { color: var(--bad); }
+
+.attestation-page .cert-list {
+  margin: 14px auto 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.attestation-page .cert-item {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+.attestation-page .cert-item summary {
+  cursor: pointer;
+  padding: 16px 18px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px 18px;
+  align-items: baseline;
+}
+.attestation-page .cert-item .markers {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  display: flex;
+  gap: 6px;
+}
+.attestation-page .cert-item .markers .marker {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+.attestation-page .cert-item[open] summary {
+  background: #f9fafb;
+}
+.attestation-page .cert-item summary .badge {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+}
+.attestation-page .cert-item summary .subject {
+  font-weight: 600;
+}
+.attestation-page .cert-item summary .issuer {
+  grid-column: 2;
+  color: var(--muted);
+  font-size: 13px;
+}
+/* Issuer/Subject chain coloring */
+.attestation-page .issuer-color-0 { color: var(--chain-0); }
+.attestation-page .issuer-color-1 { color: var(--chain-1); }
+.attestation-page .issuer-color-2 { color: var(--chain-2); }
+.attestation-page .issuer-color-3 { color: var(--chain-3); }
+.attestation-page .issuer-color-4 { color: var(--chain-4); }
+.attestation-page .issuer-color-5 { color: var(--chain-5); }
+.attestation-page .cert-item .grid {
+  padding: 16px 18px 18px;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px 22px;
+}
+.attestation-page .label {
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 8px;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+.attestation-page .mono {
+  font-family: var(--mono);
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+.attestation-page .mono b {
+  font-weight: 700;
+}
+.attestation-page .small {
+  font-size: 13.5px;
+  line-height: 1.7;
+}
+
+.attestation-page .raw {
+  margin: 8px auto 48px;
+}
+.attestation-page .raw pre {
+  background: #f3f4f6; /* gray-100 */
+  border: 1px solid var(--line);
+  padding: 14px;
+  border-radius: 12px;
+  width: 100%;
+  box-sizing: border-box;
+  max-height: 360px;
+  font-size: 13.5px;
+  line-height: 1.65;
+  /* Avoid horizontal scrollbar when toggling Raw PEM */
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Informational box */
+.attestation-page .info-box {
+  max-width: 980px;
+  margin: 14px auto 26px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  display: block;
+  & .wrapper {
+    padding: 16px 18px;
+  }
+}
+.attestation-page .info-box h2 {
+  margin: 0 0 8px;
+  font-size: 16px;
+}
+.attestation-page .info-box p {
+  margin: 8px 0;
+  color: black;
+  font-size: 14px;
+}
+
+/* Focus and interaction cues */
+.attestation-page details summary:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+/* Subtle link styling if used in the future */
+.attestation-page a {
+  color: var(--accent-ink);
+}
+
+@media (min-width: 1200px) {
+  .attestation-page header,
+  .attestation-page .uploader,
+  .attestation-page .summary,
+  .attestation-page .cert-list,
+  .attestation-page .raw {
+    max-width: 980px;
+  }
+}
