@@ -18,7 +18,7 @@ export async function sha256(buf: ArrayBuffer): Promise<string> {
     return arr.map((b) => b.toString(16).padStart(2, "0")).join("");
 }
 
-export const toHex = (arr: ArrayBuffer) =>
+export const toHex = (arr: Uint8Array) =>
     Array.from(new Uint8Array(arr))
         .map((b) => b.toString(16).padStart(2, "0"))
         .join("");
@@ -142,10 +142,15 @@ export async function getPublicKeyInfo(certificate: X509Certificate): Promise<Pu
         const algorithm = String(certificate.publicKey?.algorithm?.name || (certificate as any).signatureAlgorithm || "");
         const base: PublicKeyInfo = { algorithm, spkiSha256 };
         if (algorithm !== "ECDSA") return base;
+
+        const rawPublicKey = new Uint8Array(await crypto.subtle.exportKey("raw", await publicKey.export()));
+
+        if (rawPublicKey.length !== 65) return undefined;
+
         return {
             ...base,
-            x: toHex(publicKey.rawData.slice(1, 33)),
-            y: toHex(publicKey.rawData.slice(33, 65)),
+            x: toHex(rawPublicKey.slice(1, 33)),
+            y: toHex(rawPublicKey.slice(33, 65)),
         };
     } catch (err) {
         console.error("Unable to parse public key.", err);
